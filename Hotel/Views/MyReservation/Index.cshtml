@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Hotel.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Startofdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endofdate)
+            </th>
+            <th>
+                Rodzaj Serwisu
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rooms.RoomNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReservationDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        if(item.Guests.Email==User.Identity.Name)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Startofdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endofdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rooms.RoomNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDescription)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ResID">Details</a> |
+            </td>
+        </tr>
+            }
+}
+    </tbody>
+</table>
